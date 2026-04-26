@@ -180,7 +180,7 @@ export default function ProfilePage() {
       </header>
 
       {/* Profile header */}
-      <div className="flex flex-col justify-between gap-8 border-b-[1.5px] border-[var(--ink)] px-[60px] py-10 md:flex-row md:items-start">
+      <div className="flex flex-col justify-between gap-8 border-b-[1.5px] border-[var(--ink)] px-[60px] py-10 md:flex-row md:items-start animate-fade-in-up" style={{ animationFillMode: "both" }}>
         <div className="flex items-baseline gap-4">
           <div
             className="text-[72px] font-black leading-none text-[var(--gold)]"
@@ -222,7 +222,7 @@ export default function ProfilePage() {
       {/* Body split */}
       <div className="grid min-h-[calc(100dvh-65px-164px)] grid-cols-1 md:grid-cols-2">
         {/* Skills panel */}
-        <section className="border-b-[1.5px] border-[var(--ink)] px-[60px] py-10 md:border-b-0 md:border-r-[1.5px]">
+        <section className="border-b-[1.5px] border-[var(--ink)] px-[60px] py-10 md:border-b-0 md:border-r-[1.5px] animate-slide-left" style={{ animationDelay: "100ms", animationFillMode: "both" }}>
           <div className="mb-6 text-[9px] uppercase tracking-[0.3em] text-[var(--muted)]">
             Identified skills — portable across borders &amp; sectors
           </div>
@@ -249,7 +249,7 @@ export default function ProfilePage() {
         </section>
 
         {/* Portability panel */}
-        <section className="flex flex-col justify-between px-[60px] py-10">
+        <section className="flex flex-col justify-between px-[60px] py-10 animate-slide-right" style={{ animationDelay: "200ms", animationFillMode: "both" }}>
           <div>
             <div className="mb-6 text-[9px] uppercase tracking-[0.3em] text-[var(--muted)]">Portability score</div>
             <div

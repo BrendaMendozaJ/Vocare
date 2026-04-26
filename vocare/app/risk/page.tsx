@@ -136,7 +136,7 @@ export default function RiskPage() {
       </header>
 
       {/* Risk header */}
-      <div className="flex items-center justify-between border-b-[1.5px] border-[var(--ink)] px-[60px] py-8">
+      <div className="flex items-center justify-between border-b-[1.5px] border-[var(--ink)] px-[60px] py-8 animate-fade-in-up" style={{ animationFillMode: "both" }}>
         <div>
           <div className="mb-1 text-[9px] uppercase tracking-[0.3em] text-[var(--muted)]">
             AI Readiness &amp; Displacement Risk
@@ -167,7 +167,7 @@ export default function RiskPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2">
         {/* Left */}
-        <section className="border-b-[1.5px] border-[var(--ink)] px-[60px] py-10 md:border-b-0 md:border-r-[1.5px]">
+        <section className="border-b-[1.5px] border-[var(--ink)] px-[60px] py-10 md:border-b-0 md:border-r-[1.5px] animate-slide-left" style={{ animationDelay: "100ms", animationFillMode: "both" }}>
           <div className="mb-10">
             <div className="mb-3 text-[9px] uppercase tracking-[0.3em] text-[var(--muted)]">
               Automation risk score (Frey-Osborne 2013, LMIC-calibrated)
@@ -254,7 +254,7 @@ export default function RiskPage() {
         </section>
 
         {/* Right */}
-        <section className="px-[60px] py-10">
+        <section className="px-[60px] py-10 animate-slide-right" style={{ animationDelay: "200ms", animationFillMode: "both" }}>
           <div className="mb-5 text-[9px] uppercase tracking-[0.3em] text-[var(--muted)]">
             Your region&apos;s education trajectory · 2020–2035 (Wittgenstein Centre WCDE v3)
           </div>

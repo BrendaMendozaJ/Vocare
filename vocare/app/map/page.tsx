@@ -342,22 +342,31 @@ export default function MapPage() {
       {mode === "input" && (
         <main className="mx-auto w-full max-w-2xl px-8 py-16">
           {/* Step */}
-          <div className="mb-4 text-xs tracking-widest text-[#c4922a]" style={{ fontFamily: MONO }}>
+          <div
+            className="mb-4 text-xs tracking-widest text-[#c4922a] animate-fade-in-up"
+            style={{ fontFamily: MONO, animationDelay: "0ms", animationFillMode: "both" }}
+          >
             {t.step}
           </div>
 
           {/* Title */}
-          <h1 className="text-4xl font-bold text-white md:text-5xl" style={{ fontFamily: SERIF }}>
+          <h1
+            className="text-4xl font-bold text-white md:text-5xl animate-fade-in-up"
+            style={{ fontFamily: SERIF, animationDelay: "80ms", animationFillMode: "both" }}
+          >
             {t.title}
           </h1>
 
           {/* Subtitle */}
-          <p className="mt-3 max-w-lg text-base font-light text-[#555]" style={{ fontFamily: SANS }}>
+          <p
+            className="mt-3 max-w-lg text-base font-light text-[#555] animate-fade-in-up"
+            style={{ fontFamily: SANS, animationDelay: "160ms", animationFillMode: "both" }}
+          >
             {t.subtitle}
           </p>
 
           {/* Country selector */}
-          <div className="mt-10">
+          <div className="mt-10 animate-fade-in-up" style={{ animationDelay: "240ms", animationFillMode: "both" }}>
             <div className="mb-3 text-xs tracking-widest text-[#444]" style={{ fontFamily: MONO }}>
               {t.country_label}
             </div>
@@ -411,7 +420,7 @@ export default function MapPage() {
           )}
 
           {/* Textarea */}
-          <div className="mt-8">
+          <div className="mt-8 animate-fade-in-up" style={{ animationDelay: "320ms", animationFillMode: "both" }}>
             <textarea
               id="skills-input"
               value={text}
@@ -430,7 +439,7 @@ export default function MapPage() {
           </div>
 
           {/* Mic button — centered, Chrome/Edge via Web Speech API */}
-          <div className="mt-6 flex flex-col items-center gap-2">
+          <div className="mt-6 flex flex-col items-center gap-2 animate-fade-in-up" style={{ animationDelay: "400ms", animationFillMode: "both" }}>
             <button
               type="button"
               onClick={isListening ? stopListening : startListening}
@@ -553,8 +562,12 @@ export default function MapPage() {
               ECONOMETRIC SIGNALS · REAL DATA {matchData.econometric_signals[0]?.year ?? "2025"}
             </div>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              {matchData.econometric_signals.slice(0, 2).map((sig) => (
-                <div key={sig.id} className="border border-[#1e1e1e] bg-[#0f0f0f] p-6">
+              {matchData.econometric_signals.slice(0, 2).map((sig, i) => (
+                <div
+                  key={sig.id}
+                  className="border border-[#1e1e1e] bg-[#0f0f0f] p-6 animate-fade-in-up"
+                  style={{ animationDelay: `${i * 120}ms`, animationFillMode: "both" }}
+                >
                   <div className="text-4xl font-black text-[#c4922a] md:text-5xl" style={{ fontFamily: SERIF }}>
                     {sig.value}
                     <span className="ml-1 text-xl text-[#555]">{sig.unit}</span>
@@ -575,7 +588,7 @@ export default function MapPage() {
 
           {/* SECTION B — LABOR MARKET ALERT */}
           <section className="mb-8">
-            <div className="border-l-2 border-[#c4922a] bg-[#0f0c07] p-5">
+            <div className="border-l-2 border-[#c4922a] bg-[#0f0c07] p-5 animate-slide-left" style={{ animationDelay: "200ms", animationFillMode: "both" }}>
               <div className="text-xs tracking-widest text-[#c4922a]" style={{ fontFamily: MONO }}>
                 ⚠ LABOR MARKET ALERT
               </div>
@@ -656,7 +669,11 @@ export default function MapPage() {
               {matchData.opportunities.map((opp, i) => {
                 const badge = typeBadgeStyle(opp.type);
                 return (
-                  <div key={`${opp.title}-${i}`} className="flex flex-col border border-[#1e1e1e] bg-[#0f0f0f] p-5">
+                  <div
+                    key={`${opp.title}-${i}`}
+                    className="flex flex-col border border-[#1e1e1e] bg-[#0f0f0f] p-5 animate-fade-in-up"
+                    style={{ animationDelay: `${i * 80}ms`, animationFillMode: "both" }}
+                  >
                     <div className="mb-3 flex items-start justify-between gap-2">
                       <span
                         className="border px-2 py-0.5 text-[9px] uppercase tracking-widest"
