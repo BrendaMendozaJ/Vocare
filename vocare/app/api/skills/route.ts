@@ -2,9 +2,12 @@ import { NextRequest, NextResponse } from 'next/server'
 import type { SkillsInput, SkillsProfile } from '@/lib/types'
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY
-const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`
+const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${GEMINI_API_KEY}`
 
 export async function POST(req: NextRequest) {
+  // Debug temporal
+  console.log('KEY:', GEMINI_API_KEY ? `${GEMINI_API_KEY.slice(0,8)}...` : 'UNDEFINED')
+
   const body: SkillsInput = await req.json()
 
   const prompt = `
@@ -20,7 +23,7 @@ Required format:
   "isco_title_es": "occupation title in Spanish",
   "isco_title_en": "occupation title in English",
   "education_level": "none|primary|secondary|technical|tertiary",
-  "portability_score": 0.0 to 1.0 (how portable this skill is across countries),
+  "portability_score": 0.0,
   "countries_recognized": 190,
   "skills": [
     {
@@ -32,12 +35,6 @@ Required format:
     }
   ]
 }
-
-Rules:
-- Extract 4 to 8 skills from the description
-- Be honest and specific, not aspirational
-- ISCO code must be a real ISCO-08 4-digit code
-- portability_score: 1.0 = recognized everywhere, 0.0 = very local
 `
 
   const response = await fetch(GEMINI_URL, {
@@ -49,8 +46,12 @@ Rules:
     })
   })
 
+  console.log('Gemini status:', response.status)
+
   if (!response.ok) {
-    return NextResponse.json({ error: 'Gemini API error' }, { status: 500 })
+    const errText = await response.text()
+    console.log('Gemini error body:', errText)
+    return NextResponse.json({ error: 'Gemini API error', status: response.status, detail: errText }, { status: 500 })
   }
 
   const geminiData = await response.json()
