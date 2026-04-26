@@ -1,0 +1,179 @@
+{
+  "country": "Ghana",
+  "source": "ILOSTAT - HIES Household Income and Expenditure Survey",
+  "indicator": "Employment by economic activity (thousands)",
+  "unit": "thousands",
+  "note": "Broad sector classification. Used as econometric signal in VOCARE M02.",
+  "by_sector": {
+    "Total": [
+      {
+        "year": "2010",
+        "value_thousands": 10210.1
+      },
+      {
+        "year": "2013",
+        "value_thousands": 12038.7
+      },
+      {
+        "year": "2015",
+        "value_thousands": 8850.0
+      },
+      {
+        "year": "2017",
+        "value_thousands": 12106.3
+      },
+      {
+        "year": "2021",
+        "value_thousands": 11085.3
+      },
+      {
+        "year": "2022",
+        "value_thousands": 11676.1
+      },
+      {
+        "year": "2023",
+        "value_thousands": 49714.4
+      },
+      {
+        "year": "2024",
+        "value_thousands": 50525.2
+      }
+    ],
+    "Agriculture": [
+      {
+        "year": "2010",
+        "value_thousands": 4287.8
+      },
+      {
+        "year": "2013",
+        "value_thousands": 5435.0
+      },
+      {
+        "year": "2015",
+        "value_thousands": 3110.6
+      },
+      {
+        "year": "2017",
+        "value_thousands": 5054.8
+      },
+      {
+        "year": "2021",
+        "value_thousands": 3987.3
+      },
+      {
+        "year": "2022",
+        "value_thousands": 4195.2
+      },
+      {
+        "year": "2023",
+        "value_thousands": 17690.4
+      },
+      {
+        "year": "2024",
+        "value_thousands": 18504.8
+      }
+    ],
+    "Non-agriculture": [
+      {
+        "year": "2010",
+        "value_thousands": 5922.3
+      },
+      {
+        "year": "2013",
+        "value_thousands": 6603.7
+      },
+      {
+        "year": "2015",
+        "value_thousands": 5739.5
+      },
+      {
+        "year": "2017",
+        "value_thousands": 7051.5
+      },
+      {
+        "year": "2021",
+        "value_thousands": 7098.0
+      },
+      {
+        "year": "2022",
+        "value_thousands": 7480.9
+      },
+      {
+        "year": "2023",
+        "value_thousands": 32023.9
+      },
+      {
+        "year": "2024",
+        "value_thousands": 32020.4
+      }
+    ],
+    "Industry": [
+      {
+        "year": "2010",
+        "value_thousands": 1554.9
+      },
+      {
+        "year": "2013",
+        "value_thousands": 1685.4
+      },
+      {
+        "year": "2015",
+        "value_thousands": 1652.2
+      },
+      {
+        "year": "2017",
+        "value_thousands": 2105.7
+      },
+      {
+        "year": "2021",
+        "value_thousands": 1594.1
+      },
+      {
+        "year": "2022",
+        "value_thousands": 2045.4
+      },
+      {
+        "year": "2023",
+        "value_thousands": 7770.3
+      },
+      {
+        "year": "2024",
+        "value_thousands": 8134.0
+      }
+    ],
+    "Services": [
+      {
+        "year": "2010",
+        "value_thousands": 4367.5
+      },
+      {
+        "year": "2013",
+        "value_thousands": 4856.4
+      },
+      {
+        "year": "2015",
+        "value_thousands": 4079.7
+      },
+      {
+        "year": "2017",
+        "value_thousands": 4869.5
+      },
+      {
+        "year": "2021",
+        "value_thousands": 5503.9
+      },
+      {
+        "year": "2022",
+        "value_thousands": 5310.0
+      },
+      {
+        "year": "2023",
+        "value_thousands": 21206.3
+      },
+      {
+        "year": "2024",
+        "value_thousands": 21716.7
+      }
+    ]
+  }
+}

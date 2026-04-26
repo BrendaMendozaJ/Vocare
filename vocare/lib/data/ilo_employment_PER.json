@@ -1,0 +1,11 @@
+{
+  "country": "PER",
+  "source": "World Bank WDI - ILO modeled labor estimates",
+  "note": "SL.EMP.VULN.ZS y SL.EMP.SELF.ZS son estimados modelados ILO publicados via World Bank WDI",
+  "indicators_used": [
+    "SL.EMP.VULN.ZS",
+    "SL.EMP.SELF.ZS",
+    "SL.UEM.1524.ZS"
+  ],
+  "reference": "https://data.worldbank.org/indicator/SL.EMP.VULN.ZS"
+}

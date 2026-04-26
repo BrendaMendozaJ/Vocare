@@ -1,0 +1,15 @@
+{
+  "country_code": "GHA",
+  "country_name": "Ghana",
+  "language": "en",
+  "currency": "GHS",
+  "lmic_factor": 0.76,
+  "wdi_file": "wdi_GHA.json",
+  "ilo_file": "ilo_employment_GHA.json",
+  "witt_file": "witt_GHA.json",
+  "job_search_domains": ["jobberman.com", "myjobmag.com", "ghanaiansforum.com"],
+  "min_wage_usd_month": 67,
+  "informal_economy_pct": 80,
+  "youth_unemployment_pct": 12.3,
+  "internet_penetration_pct": 58
+}

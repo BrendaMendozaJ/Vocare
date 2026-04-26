@@ -1,0 +1,45 @@
+{
+  "country": "Ghana",
+  "iso3": "GHA",
+  "source": "Wittgenstein Centre for Demography and Global Human Capital v3",
+  "scenario": "SSP2 (Medium)",
+  "indicator": "% population 25+ by education level",
+  "projections": [
+    {
+      "year": 2020,
+      "no_education": 28.4,
+      "primary": 22.1,
+      "lower_secondary": 18.3,
+      "upper_secondary": 18.2,
+      "post_secondary": 4.1,
+      "tertiary": 8.9
+    },
+    {
+      "year": 2025,
+      "no_education": 22.6,
+      "primary": 21.8,
+      "lower_secondary": 19.8,
+      "upper_secondary": 20.4,
+      "post_secondary": 5.1,
+      "tertiary": 10.3
+    },
+    {
+      "year": 2030,
+      "no_education": 17.4,
+      "primary": 20.9,
+      "lower_secondary": 20.8,
+      "upper_secondary": 22.9,
+      "post_secondary": 6.0,
+      "tertiary": 12.0
+    },
+    {
+      "year": 2035,
+      "no_education": 13.2,
+      "primary": 19.5,
+      "lower_secondary": 21.4,
+      "upper_secondary": 25.2,
+      "post_secondary": 7.0,
+      "tertiary": 13.7
+    }
+  ]
+}

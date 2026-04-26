@@ -1,0 +1,45 @@
+{
+  "country": "Peru",
+  "iso3": "PER",
+  "source": "Wittgenstein Centre for Demography and Global Human Capital v3",
+  "scenario": "SSP2 (Medium)",
+  "indicator": "% population 25+ by education level",
+  "projections": [
+    {
+      "year": 2020,
+      "no_education": 6.3,
+      "primary": 19.2,
+      "lower_secondary": 16.8,
+      "upper_secondary": 34.1,
+      "post_secondary": 6.8,
+      "tertiary": 16.8
+    },
+    {
+      "year": 2025,
+      "no_education": 4.8,
+      "primary": 16.9,
+      "lower_secondary": 16.2,
+      "upper_secondary": 35.7,
+      "post_secondary": 7.6,
+      "tertiary": 18.8
+    },
+    {
+      "year": 2030,
+      "no_education": 3.6,
+      "primary": 14.5,
+      "lower_secondary": 15.3,
+      "upper_secondary": 36.9,
+      "post_secondary": 8.4,
+      "tertiary": 21.3
+    },
+    {
+      "year": 2035,
+      "no_education": 2.7,
+      "primary": 12.3,
+      "lower_secondary": 14.1,
+      "upper_secondary": 37.7,
+      "post_secondary": 9.1,
+      "tertiary": 24.1
+    }
+  ]
+}

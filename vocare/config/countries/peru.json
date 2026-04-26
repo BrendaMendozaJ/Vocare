@@ -1,0 +1,15 @@
+{
+  "country_code": "PER",
+  "country_name": "Peru",
+  "language": "es",
+  "currency": "PEN",
+  "lmic_factor": 0.82,
+  "wdi_file": "wdi_PER.json",
+  "ilo_file": "ilo_employment_PER.json",
+  "witt_file": "witt_PER.json",
+  "job_search_domains": ["computrabajo.com", "bumeran.com", "linkedin.com"],
+  "min_wage_usd_month": 263,
+  "informal_economy_pct": 72,
+  "youth_unemployment_pct": 8.9,
+  "internet_penetration_pct": 71
+}
