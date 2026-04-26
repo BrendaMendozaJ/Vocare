@@ -145,13 +145,22 @@ export default function RiskPage() {
             Calibrated for <span>{countryName(country)}</span>
           </div>
         </div>
-        <button
-          type="button"
-          onClick={() => router.push("/profile")}
-          className="border border-[var(--border)] bg-transparent px-5 py-[10px] text-[11px] tracking-[0.1em] text-[var(--muted)] transition-colors hover:border-[var(--ink)] hover:text-[var(--ink)]"
-        >
-          ← Back to profile
-        </button>
+        <div className="flex gap-3">
+          <button
+            type="button"
+            onClick={() => router.push("/profile")}
+            className="border border-[var(--border)] bg-transparent px-5 py-[10px] text-[11px] tracking-[0.1em] text-[var(--muted)] transition-colors hover:border-[var(--ink)] hover:text-[var(--ink)]"
+          >
+            ← Back to profile
+          </button>
+          <button
+            type="button"
+            onClick={() => router.push("/map")}
+            className="border border-[var(--ink)] bg-[var(--ink)] px-5 py-[10px] text-[11px] tracking-[0.1em] text-[var(--paper)] transition-colors hover:bg-[var(--gold)] hover:border-[var(--gold)] hover:text-[var(--ink)]"
+          >
+            Find Opportunities →
+          </button>
+        </div>
       </div>
 
       {error ? <div className="px-[60px] py-4 text-[12px] text-[var(--rust)]">{error}</div> : null}

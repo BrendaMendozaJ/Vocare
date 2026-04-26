@@ -1,0 +1,71 @@
+{
+  "country": "PER",
+  "generated": "2026-04-26",
+  "project": "VOCARE",
+  "sources": [
+    "INEI: Reporte de Empleo a Nivel Nacional (2025)",
+    "World Bank: Macro Poverty Outlook for Peru (2025-2026)",
+    "Osiptel / eBIZ: Reporte de Conectividad (Oct 2025)"
+  ],
+  
+  "key_signals": [
+    {
+      "id": "youth_unemployment",
+      "label": "Youth Unemployment Rate (<25 years)",
+      "value": 10.7,
+      "unit": "%",
+      "year": 2025,
+      "source": "INEI",
+      "interpretation": "Impacto desproporcionado en jóvenes menores de 25 años. El desempleo en jóvenes universitarios también es alto (6.3%)."
+    },
+    {
+      "id": "informal_employment_pct",
+      "label": "Informal Employment Rate",
+      "value": 70.2,
+      "unit": "%",
+      "year": 2025,
+      "source": "INEI",
+      "interpretation": "7 de cada 10 trabajadores peruanos laboran sin CTS, seguro formal ni pensión, agudizándose en zonas rurales (94.8%)."
+    },
+    {
+      "id": "internet_users_pct",
+      "label": "Internet Penetration (National Average)",
+      "value": 91.6,
+      "unit": "%",
+      "year": 2025,
+      "source": "Osiptel",
+      "interpretation": "Alta cobertura habilitada por el internet móvil; Lima roza el 98% de hogares conectados, viabilizando el trabajo remoto y la economía digital."
+    },
+    {
+      "id": "gdp_growth_2025",
+      "label": "GDP Growth Rate",
+      "value": 3.4,
+      "unit": "%",
+      "year": 2025,
+      "source": "World Bank MPO",
+      "interpretation": "Economía resiliente que se expandió un 3.4% en 2025, reduciendo levemente la pobreza al 33.4%, aunque la productividad general sigue baja."
+    }
+  ],
+
+  "labor_market_gap_alert": {
+    "warning": "Crecimiento Económico Sin Empleo Formal",
+    "period_measured": "2024-2025",
+    "national_unemployment_general": "4.9%",
+    "urban_vs_rural_informality_gap": "64.5% (Urbano) vs 94.8% (Rural)",
+    "source": "INEI (2025) / World Bank MPO",
+    "vocare_actionable": "El modelo en Perú no debe enfocarse solo en 'conseguir empleo', sino en formalización de micro-emprendimientos y upskilling para exportación de servicios digitales."
+  },
+
+  "digital_economy_metrics": {
+    "ai_workplace_adoption_growth": "233% en 6 meses (2025)",
+    "lima_broadband_mobile_access": "97.5%",
+    "rural_internet_penetration": "82.3%",
+    "tech_ecosystem_note": "Aceleración fuerte en soluciones empresariales e integración de IA en oficinas, con ingresos récord en el sector de telecomunicaciones (S/ 17,829 millones)."
+  },
+
+  "sector_employment_update": [
+    { "sector": "Services", "trend_2025": "growing", "note": "Concentra la mayor masa laboral urbana (comercio, plataformas de delivery, servicios tech)." },
+    { "sector": "Agriculture", "trend_2025": "stable", "note": "Alta absorción de mano de obra en zonas rurales, pero con 94.8% de informalidad y baja productividad." },
+    { "sector": "Industry & Mining", "trend_2025": "growing", "note": "Principal motor de crecimiento del PBI (3.4%), pero genera un volumen bajo de empleo directo comparado con Servicios." }
+  ]
+}

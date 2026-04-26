@@ -58,3 +58,38 @@ export interface CountryConfig {
   youth_unemployment_pct: number
   internet_penetration_pct: number
 }
+
+export interface MatchProfile {
+  matched_sectors: {
+    name: string
+    employment_thousands: number
+    pct_of_total: number
+    trend: string
+    relevance: 'high' | 'medium' | 'low'
+  }[]
+  econometric_signals: {
+    id: string
+    label: string
+    value: number
+    unit: string
+    year: number
+    source: string
+    interpretation: string
+  }[]
+  labor_market_alert: {
+    warning: string
+    ratio?: string
+    vocare_actionable: string
+    source: string
+  }
+  opportunities: {
+    title: string
+    type: 'formal' | 'self_employment' | 'gig' | 'training'
+    sector: string
+    wage_estimate_usd_month: number | null
+    realistic: boolean
+    note: string
+  }[]
+  job_search_links: string[]
+  sources: string[]
+}

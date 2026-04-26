@@ -1,0 +1,65 @@
+{
+  "country": "GHA",
+  "generated": "2026-04-26",
+  "project": "VOCARE",
+  "sources": [
+    "World Bank 9th Ghana Economic Update (Aug 2025)",
+    "Digital 2025 Ghana Report",
+    "Oxford Internet Institute Fairwork Report",
+    "YCharts 2025 Data"
+  ],
+  
+  "key_signals": [
+    {
+      "id": "youth_unemployment",
+      "label": "Youth Unemployment Rate",
+      "value": 5.83,
+      "unit": "%",
+      "year": 2025,
+      "source": "YCharts 2025",
+      "interpretation": "Tasa oficial baja, pero oculta un alto nivel de subempleo y trabajo vulnerable en el sector informal."
+    },
+    {
+      "id": "internet_users_pct",
+      "label": "Internet Penetration",
+      "value": 69.5,
+      "unit": "%",
+      "year": 2025,
+      "source": "Digital 2025 Ghana Report",
+      "interpretation": "Casi 70% de la población conectada (24.3M), catalizador principal para la economía freelance en el país."
+    },
+    {
+      "id": "gdp_growth_q1",
+      "label": "GDP Growth Rate (Q1)",
+      "value": 5.3,
+      "unit": "%",
+      "year": 2025,
+      "source": "World Bank 9th GEU",
+      "interpretation": "Crecimiento resiliente impulsado por la agricultura y los servicios, con la inflación bajando al 13.7%."
+    }
+  ],
+
+  "labor_market_gap_alert": {
+    "warning": "Critical Job Deficit",
+    "period_measured": "2012-2023",
+    "working_age_population_growth": 2700000,
+    "net_jobs_created": 250000,
+    "ratio": "1 empleo creado por cada ~10.8 nuevos trabajadores",
+    "source": "World Bank 9th GEU (2025)",
+    "vocare_actionable": "El modelo debe priorizar rutas de autoempleo (Gig Economy) sobre la búsqueda de empleo corporativo tradicional."
+  },
+
+  "digital_economy_metrics": {
+    "gig_workers_current_est": 275000,
+    "gig_workers_2030_projection": 4500000,
+    "online_freelance_growth_3yr_pct": 150,
+    "gender_gap_tech": "Men outnumber women 80 to 20 in the Ghanaian tech industry",
+    "key_freelance_sectors": ["Content Creation", "Tech Services", "Ride-hailing/Delivery"]
+  },
+
+  "sector_employment_update": [
+    { "sector": "Agriculture", "trend_2025": "stable", "note": "Crecimiento fuerte en Q1 2025 en cultivos y pesca." },
+    { "sector": "Services", "trend_2025": "growing", "note": "Impulsado fuertemente por comercio, transporte y plataformas digitales." },
+    { "sector": "Industry", "trend_2025": "stable", "note": "Rebote reciente gracias a minería y construcción." }
+  ]
+}
