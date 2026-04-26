@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>VOCARE — Skills Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0a0a0a;
+  --paper: #f5f0e8;
+  --gold: #c8962a;
+  --gold-light: #e8b84b;
+  --rust: #b84a2a;
+  --forest: #1a3a2a;
+  --sky: #2a4a6a;
+  --muted: #8a8070;
+  --border: #d4c8b0;
+  --card: #faf7f2;
+  --risk-low: #2d6a3f;
+  --risk-mid: #8a6020;
+  --risk-high: #8a2020;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Mono', monospace;
+  background: var(--paper);
+  color: var(--ink);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── HEADER ── */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 40px;
+  border-bottom: 1.5px solid var(--ink);
+  background: var(--paper);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 22px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.logo span {
+  color: var(--gold);
+}
+
+.header-tag {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ── SCREENS ── */
+.screen { display: none; min-height: calc(100vh - 65px); }
+.screen.active { display: block; }
+
+/* ── SCREEN 1: FORM ── */
+#screen-form {
+  display: none;
+  flex-direction: row;
+}
+#screen-form.active { display: flex; }
+
+.form-left {
+  width: 45%;
+  padding: 60px 40px 60px 60px;
+  border-right: 1.5px solid var(--ink);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+
+.form-headline {
+  font-family: 'Playfair Display', serif;
+  font-size: 52px;
+  font-weight: 900;
+  line-height: 1.05;
+  margin-bottom: 24px;
+}
+
+.form-headline em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.form-subtext {
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--muted);
+  max-width: 340px;
+  margin-bottom: 40px;
+}
+
+.stat-row {
+  display: flex;
+  gap: 32px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+
+.stat { }
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.stat-label {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.form-right {
+  width: 55%;
+  padding: 60px 60px 60px 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.field-label {
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+  display: block;
+}
+
+.country-selector {
+  display: flex;
+  gap: 0;
+  margin-bottom: 32px;
+  border: 1.5px solid var(--ink);
+}
+
+.country-btn {
+  flex: 1;
+  padding: 12px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  transition: all 0.2s;
+  border-right: 1px solid var(--ink);
+}
+.country-btn:last-child { border-right: none; }
+.country-btn.active {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+textarea {
+  width: 100%;
+  min-height: 200px;
+  padding: 20px;
+  border: 1.5px solid var(--ink);
+  background: var(--card);
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--ink);
+  resize: vertical;
+  outline: none;
+  margin-bottom: 24px;
+  transition: border-color 0.2s;
+}
+textarea:focus { border-color: var(--gold); }
+textarea::placeholder { color: var(--muted); }
+
+.submit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 18px 24px;
+  background: var(--ink);
+  color: var(--paper);
+  border: none;
+  cursor: pointer;
+  font-family: 'Syne', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: background 0.2s;
+}
+.submit-btn:hover { background: var(--forest); }
+.submit-btn .arrow { font-size: 20px; }
+
+.loading-bar {
+  display: none;
+  width: 100%;
+  height: 3px;
+  background: var(--border);
+  margin-top: 16px;
+  overflow: hidden;
+}
+.loading-bar.active { display: block; }
+.loading-bar::after {
+  content: '';
+  display: block;
+  height: 100%;
+  width: 40%;
+  background: var(--gold);
+  animation: slide 1s infinite;
+}
+@keyframes slide {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(300%); }
+}
+
+/* ── SCREEN 2: PROFILE ── */
+#screen-profile {
+  display: none;
+  flex-direction: column;
+}
+#screen-profile.active { display: flex; }
+
+.profile-header {
+  padding: 40px 60px;
+  border-bottom: 1.5px solid var(--ink);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.profile-isco {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.isco-code {
+  font-family: 'Playfair Display', serif;
+  font-size: 72px;
+  font-weight: 900;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.isco-info { }
+.isco-label {
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.isco-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  max-width: 400px;
+  line-height: 1.3;
+}
+
+.profile-meta {
+  text-align: right;
+}
+.meta-item {
+  margin-bottom: 12px;
+}
+.meta-key {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.meta-val {
+  font-family: 'Syne', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.profile-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  flex: 1;
+}
+
+.skills-panel {
+  padding: 40px 60px;
+  border-right: 1.5px solid var(--ink);
+}
+
+.panel-title {
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+
+.skill-card {
+  padding: 16px 20px;
+  border: 1px solid var(--border);
+  margin-bottom: 10px;
+  background: var(--card);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  animation: fadeUp 0.4s ease both;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.skill-name {
+  font-size: 13px;
+  font-weight: 500;
+}
+.skill-badges {
+  display: flex;
+  gap: 6px;
+}
+.badge {
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border: 1px solid;
+}
+.badge-technical { border-color: var(--rust); color: var(--rust); }
+.badge-digital { border-color: var(--sky); color: var(--sky); }
+.badge-transversal { border-color: var(--forest); color: var(--forest); }
+.badge-language { border-color: var(--gold); color: var(--gold); }
+.badge-level { border-color: var(--muted); color: var(--muted); }
+
+.portability-panel {
+  padding: 40px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.portability-score {
+  font-family: 'Playfair Display', serif;
+  font-size: 96px;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--ink);
+}
+.portability-score span {
+  font-size: 36px;
+  color: var(--muted);
+}
+
+.portability-bar {
+  height: 4px;
+  background: var(--border);
+  margin: 16px 0;
+}
+.portability-fill {
+  height: 100%;
+  background: var(--gold);
+  transition: width 1s ease;
+}
+
+.portability-label {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.6;
+  max-width: 280px;
+}
+
+.globe-stat {
+  padding: 24px;
+  background: var(--ink);
+  color: var(--paper);
+}
+.globe-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
+  font-weight: 900;
+  color: var(--gold-light);
+}
+.globe-text {
+  font-size: 11px;
+  color: #aaa;
+  margin-top: 4px;
+}
+
+.next-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background: transparent;
+  border: 1.5px solid var(--ink);
+  cursor: pointer;
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: all 0.2s;
+  margin-top: 20px;
+  width: 100%;
+}
+.next-btn:hover { background: var(--ink); color: var(--paper); }
+
+/* ── SCREEN 3: RISK ── */
+#screen-risk {
+  display: none;
+  flex-direction: column;
+}
+#screen-risk.active { display: flex; }
+
+.risk-header {
+  padding: 32px 60px;
+  border-bottom: 1.5px solid var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.risk-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.risk-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  flex: 1;
+}
+
+.risk-left {
+  padding: 40px 60px;
+  border-right: 1.5px solid var(--ink);
+}
+
+.risk-right {
+  padding: 40px 60px;
+}
+
+.gauge-container {
+  margin-bottom: 40px;
+}
+
+.gauge-label {
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+.gauge-score {
+  font-family: 'Playfair Display', serif;
+  font-size: 80px;
+  font-weight: 900;
+  line-height: 1;
+}
+.gauge-score.risk-low { color: var(--risk-low); }
+.gauge-score.risk-mid { color: var(--risk-mid); }
+.gauge-score.risk-high { color: var(--risk-high); }
+
+.gauge-bar {
+  height: 8px;
+  background: var(--border);
+  margin: 16px 0;
+  position: relative;
+}
+.gauge-fill {
+  height: 100%;
+  transition: width 1.2s ease;
+}
+.gauge-fill.risk-low { background: var(--risk-low); }
+.gauge-fill.risk-mid { background: var(--risk-mid); }
+.gauge-fill.risk-high { background: var(--risk-high); }
+
+.gauge-sublabel {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.skills-section { margin-bottom: 32px; }
+.skills-section-title {
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.skills-section-title.durable { color: var(--risk-low); }
+.skills-section-title.atrisk { color: var(--risk-high); }
+.skills-section-title.adjacent { color: var(--sky); }
+
+.skill-pill {
+  display: inline-block;
+  padding: 6px 12px;
+  border: 1px solid;
+  font-size: 11px;
+  margin: 4px 4px 0 0;
+}
+.skill-pill.durable { border-color: var(--risk-low); color: var(--risk-low); }
+.skill-pill.atrisk { border-color: var(--risk-high); color: var(--risk-high); }
+.skill-pill.adjacent { border-color: var(--sky); color: var(--sky); }
+
+/* Wittgenstein chart */
+.chart-title {
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+.witt-chart {
+  width: 100%;
+  height: 200px;
+  position: relative;
+  margin-bottom: 8px;
+}
+
+.witt-bars {
+  display: flex;
+  align-items: flex-end;
+  height: 160px;
+  gap: 8px;
+  border-bottom: 1.5px solid var(--ink);
+  padding-bottom: 0;
+}
+
+.witt-bar-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: flex-end;
+}
+
+.witt-bar {
+  width: 100%;
+  background: var(--gold);
+  transition: height 1s ease;
+  position: relative;
+}
+
+.witt-bar-label {
+  font-size: 9px;
+  color: var(--muted);
+  margin-top: 6px;
+  text-align: center;
+}
+
+.witt-bar-val {
+  font-size: 9px;
+  color: var(--ink);
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.lmic-box {
+  padding: 20px;
+  background: var(--forest);
+  color: var(--paper);
+  margin-top: 24px;
+}
+.lmic-title {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-bottom: 8px;
+}
+.lmic-text {
+  font-size: 12px;
+  line-height: 1.6;
+  color: #ddd;
+}
+.lmic-factor {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--gold-light);
+  margin-top: 8px;
+}
+
+.back-btn {
+  padding: 10px 20px;
+  background: transparent;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  transition: all 0.2s;
+}
+.back-btn:hover { border-color: var(--ink); color: var(--ink); }
+
+.error-msg {
+  color: var(--rust);
+  font-size: 12px;
+  margin-top: 12px;
+  display: none;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">VO<span>C</span>ARE</div>
+  <div class="header-tag">World Bank × Hack-Nation · UNMAPPED Challenge</div>
+  <div class="header-tag" id="header-country">Ghana · GHA</div>
+</header>
+
+<!-- SCREEN 1: FORM -->
+<div class="screen active" id="screen-form">
+  <div class="form-left">
+    <div class="form-eyebrow">Skills Intelligence Platform</div>
+    <h1 class="form-headline">Make your<br>skills <em>visible</em><br>to the world.</h1>
+    <p class="form-subtext">
+      Amara has been repairing phones since she was 17. To the formal economy, she doesn't exist.
+      VOCARE changes that — mapping real skills to real opportunities.
+    </p>
+    <div class="stat-row">
+      <div class="stat">
+        <div class="stat-num">600M</div>
+        <div class="stat-label">Youth with unmapped skills</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">190</div>
+        <div class="stat-label">Countries recognizing ISCO</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">80%</div>
+        <div class="stat-label">Ghana informal economy</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-right">
+    <label class="field-label">Select country context</label>
+    <div class="country-selector">
+      <button class="country-btn active" onclick="selectCountry('GHA', this)">🇬🇭 Ghana</button>
+      <button class="country-btn" onclick="selectCountry('PER', this)">🇵🇪 Peru</button>
+    </div>
+
+    <label class="field-label" for="skills-input">Describe your skills, experience and knowledge</label>
+    <textarea id="skills-input" placeholder="Example: I have been repairing phones since I was 17. I speak English, Twi and French. I taught myself basic coding from YouTube videos. I run a small phone repair stall in the market..."></textarea>
+
+    <button class="submit-btn" onclick="submitSkills()">
+      <span>Map my skills to the world</span>
+      <span class="arrow">→</span>
+    </button>
+    <div class="loading-bar" id="loading-bar"></div>
+    <div class="error-msg" id="error-msg">Something went wrong. Please try again.</div>
+  </div>
+</div>
+
+<!-- SCREEN 2: PROFILE -->
+<div class="screen" id="screen-profile">
+  <div class="profile-header">
+    <div class="profile-isco">
+      <div class="isco-code" id="p-isco-code">7422</div>
+      <div class="isco-info">
+        <div class="isco-label">ISCO-08 Occupation Code · Recognized in 190 countries</div>
+        <div class="isco-title" id="p-isco-title">ICT Installers and Servicers</div>
+      </div>
+    </div>
+    <div class="profile-meta">
+      <div class="meta-item">
+        <div class="meta-key">Education level</div>
+        <div class="meta-val" id="p-edu">Secondary</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-key">Country context</div>
+        <div class="meta-val" id="p-country">Ghana</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="profile-body">
+    <div class="skills-panel">
+      <div class="panel-title">Identified skills — portable across borders & sectors</div>
+      <div id="skills-list"></div>
+    </div>
+
+    <div class="portability-panel">
+      <div>
+        <div class="panel-title">Portability score</div>
+        <div class="portability-score" id="p-portability">0<span>%</span></div>
+        <div class="portability-bar">
+          <div class="portability-fill" id="p-port-bar" style="width:0%"></div>
+        </div>
+        <div class="portability-label">
+          How recognized and transferable your skills are across different countries and economic contexts.
+        </div>
+      </div>
+
+      <div>
+        <div class="globe-stat">
+          <div class="globe-num">190</div>
+          <div class="globe-text">countries use ISCO-08 as their occupational standard. Your profile is valid in all of them.</div>
+        </div>
+        <button class="next-btn" onclick="loadRisk()">
+          <span>See AI displacement risk →</span>
+        </button>
+        <button class="back-btn" onclick="goBack('form')" style="margin-top:10px;width:100%">← Start over</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SCREEN 3: RISK -->
+<div class="screen" id="screen-risk">
+  <div class="risk-header">
+    <div>
+      <div class="panel-title">AI Readiness & Displacement Risk</div>
+      <div class="risk-title">Calibrated for <span id="r-country">Ghana</span></div>
+    </div>
+    <button class="back-btn" onclick="goBack('profile')">← Back to profile</button>
+  </div>
+
+  <div class="risk-body">
+    <div class="risk-left">
+      <div class="gauge-container">
+        <div class="gauge-label">Automation risk score (Frey-Osborne 2013, LMIC-calibrated)</div>
+        <div class="gauge-score" id="r-score">0.47</div>
+        <div class="gauge-bar">
+          <div class="gauge-fill" id="r-bar" style="width:0%"></div>
+        </div>
+        <div class="gauge-sublabel" id="r-label">Medium risk · Calibrated for Ghana labor market</div>
+      </div>
+
+      <div class="skills-section">
+        <div class="skills-section-title durable">✓ Durable skills — these protect you</div>
+        <div id="r-durable"></div>
+      </div>
+
+      <div class="skills-section" id="r-atrisk-section">
+        <div class="skills-section-title atrisk">⚠ At-risk skills — these are changing</div>
+        <div id="r-atrisk"></div>
+      </div>
+
+      <div class="skills-section">
+        <div class="skills-section-title adjacent">→ Adjacent skills — what to learn next</div>
+        <div id="r-adjacent"></div>
+      </div>
+    </div>
+
+    <div class="risk-right">
+      <div class="chart-title">Your region's education trajectory · 2020–2035 (Wittgenstein Centre WCDE v3)</div>
+
+      <div class="witt-bars" id="witt-bars"></div>
+      <div style="display:flex;justify-content:space-between;margin-top:6px;" id="witt-labels"></div>
+
+      <div class="lmic-box">
+        <div class="lmic-title">LMIC Calibration Factor</div>
+        <div class="lmic-text">
+          Automation risk is not the same everywhere. A phone repair technician in Accra faces different pressures than one in Frankfurt. We calibrate Frey-Osborne scores for your local context.
+        </div>
+        <div class="lmic-factor" id="r-lmic">0.76×</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const API = 'http://localhost:3000'
+let currentCountry = 'GHA'
+let currentProfile = null
+let currentRisk = null
+
+function selectCountry(code, btn) {
+  currentCountry = code
+  document.querySelectorAll('.country-btn').forEach(b => b.classList.remove('active'))
+  btn.classList.add('active')
+  document.getElementById('header-country').textContent = code === 'GHA' ? 'Ghana · GHA' : 'Peru · PER'
+}
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'))
+  document.getElementById('screen-' + id).classList.add('active')
+}
+
+function goBack(screen) { showScreen(screen) }
+
+async function submitSkills() {
+  const text = document.getElementById('skills-input').value.trim()
+  if (!text) return
+
+  const btn = document.querySelector('.submit-btn')
+  const bar = document.getElementById('loading-bar')
+  const err = document.getElementById('error-msg')
+
+  btn.disabled = true
+  bar.classList.add('active')
+  err.style.display = 'none'
+
+  try {
+    const res = await fetch(`${API}/api/skills`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text, country: currentCountry, language: currentCountry === 'GHA' ? 'en' : 'es' })
+    })
+    if (!res.ok) throw new Error('API error')
+    currentProfile = await res.json()
+    renderProfile(currentProfile)
+    showScreen('profile')
+  } catch(e) {
+    err.style.display = 'block'
+    err.textContent = 'Error: ' + e.message
+  } finally {
+    btn.disabled = false
+    bar.classList.remove('active')
+  }
+}
+
+function renderProfile(p) {
+  document.getElementById('p-isco-code').textContent = p.isco_code
+  document.getElementById('p-isco-title').textContent = p.isco_title_en
+  document.getElementById('p-edu').textContent = p.education_level.charAt(0).toUpperCase() + p.education_level.slice(1)
+  document.getElementById('p-country').textContent = currentCountry === 'GHA' ? 'Ghana' : 'Peru'
+
+  const pct = Math.round((p.portability_score || 0) * 100)
+  document.getElementById('p-portability').innerHTML = pct + '<span>%</span>'
+  setTimeout(() => {
+    document.getElementById('p-port-bar').style.width = pct + '%'
+  }, 100)
+
+  const list = document.getElementById('skills-list')
+  list.innerHTML = ''
+  ;(p.skills || []).forEach((s, i) => {
+    const card = document.createElement('div')
+    card.className = 'skill-card'
+    card.style.animationDelay = (i * 0.08) + 's'
+    card.innerHTML = `
+      <div class="skill-name">${s.label_en}</div>
+      <div class="skill-badges">
+        <span class="badge badge-${s.type}">${s.type}</span>
+        <span class="badge badge-level">${s.level}</span>
+      </div>
+    `
+    list.appendChild(card)
+  })
+}
+
+async function loadRisk() {
+  if (!currentProfile) return
+  const btn = document.querySelector('.next-btn')
+  btn.textContent = 'Loading risk data...'
+  btn.disabled = true
+
+  try {
+    const res = await fetch(`${API}/api/risk`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ profile: currentProfile, country: currentCountry })
+    })
+    if (!res.ok) throw new Error('API error')
+    currentRisk = await res.json()
+    renderRisk(currentRisk)
+    showScreen('risk')
+  } catch(e) {
+    alert('Error loading risk: ' + e.message)
+  } finally {
+    btn.textContent = 'See AI displacement risk →'
+    btn.disabled = false
+  }
+}
+
+function renderRisk(r) {
+  const pct = Math.round(r.adjusted_score * 100)
+  const label = r.risk_label
+
+  const scoreEl = document.getElementById('r-score')
+  scoreEl.textContent = r.adjusted_score.toFixed(2)
+  scoreEl.className = 'gauge-score risk-' + (label === 'bajo' ? 'low' : label === 'medio' ? 'mid' : 'high')
+
+  const barEl = document.getElementById('r-bar')
+  barEl.className = 'gauge-fill risk-' + (label === 'bajo' ? 'low' : label === 'medio' ? 'mid' : 'high')
+  setTimeout(() => { barEl.style.width = pct + '%' }, 100)
+
+  const labelMap = { bajo: 'Low risk', medio: 'Medium risk', alto: 'High risk' }
+  document.getElementById('r-label').textContent = `${labelMap[label]} · Calibrated for ${currentCountry === 'GHA' ? 'Ghana' : 'Peru'} labor market`
+  document.getElementById('r-country').textContent = currentCountry === 'GHA' ? 'Ghana' : 'Peru'
+  document.getElementById('r-lmic').textContent = r.lmic_factor + '×'
+
+  const durable = document.getElementById('r-durable')
+  durable.innerHTML = (r.durable_skills || []).filter(Boolean).map(s =>
+    `<span class="skill-pill durable">${s}</span>`).join('') || '<span style="color:var(--muted);font-size:12px">None identified</span>'
+
+  const atrisk = document.getElementById('r-atrisk')
+  const atRiskItems = (r.at_risk_skills || []).filter(Boolean)
+  atrisk.innerHTML = atRiskItems.map(s => `<span class="skill-pill atrisk">${s}</span>`).join('') ||
+    '<span style="color:var(--muted);font-size:12px">None identified</span>'
+
+  const adjacent = document.getElementById('r-adjacent')
+  adjacent.innerHTML = (r.adjacent_skills || []).map(s =>
+    `<span class="skill-pill adjacent">${s}</span>`).join('')
+
+  // Wittgenstein chart
+  const witt = r.wittgenstein || []
+  const maxTertiary = Math.max(...witt.map(w => w.tertiary))
+  const barsEl = document.getElementById('witt-bars')
+  const labelsEl = document.getElementById('witt-labels')
+  barsEl.innerHTML = ''
+  labelsEl.innerHTML = ''
+
+  witt.forEach((w, i) => {
+    const heightPct = (w.tertiary / (maxTertiary * 1.2)) * 100
+    const group = document.createElement('div')
+    group.className = 'witt-bar-group'
+    group.innerHTML = `
+      <div class="witt-bar-val">${w.tertiary}%</div>
+      <div class="witt-bar" style="height:0%" data-h="${heightPct}"></div>
+    `
+    barsEl.appendChild(group)
+
+    const lbl = document.createElement('div')
+    lbl.className = 'witt-bar-label'
+    lbl.style.flex = '1'
+    lbl.style.textAlign = 'center'
+    lbl.textContent = w.year
+    labelsEl.appendChild(lbl)
+  })
+
+  setTimeout(() => {
+    document.querySelectorAll('.witt-bar').forEach(b => {
+      b.style.transition = 'height 1s ease'
+      b.style.height = b.dataset.h + '%'
+    })
+  }, 100)
+}
+</script>
+</body>
+</html>
